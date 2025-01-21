@@ -1,14 +1,14 @@
 package com.challengeforohub.Foro.Hub.domain.respuesta;
 
-
 import com.challengeforohub.Foro.Hub.domain.respuesta.dto.ActualizarRespuestaDTO;
 import com.challengeforohub.Foro.Hub.domain.respuesta.dto.CrearRespuestaDTO;
+import com.challengeforohub.Foro.Hub.domain.topico.Topico;
+import com.challengeforohub.Foro.Hub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 
 import java.time.LocalDateTime;
 
@@ -16,24 +16,28 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "respuestas")
-@Entity (name = "Respuesta")
-@EqualsAndHashCode (of = "id")
+@Entity(name = "Respuesta")
+@EqualsAndHashCode(of = "id")
 public class Respuesta {
-
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mensaje;
 
-    @Column (name = "fecha_creacion")
+    @Column(name="fecha_creacion")
     private LocalDateTime fechaCreacion;
+
+    @Column(name="ultima_actualizacion")
+    private LocalDateTime ultimaActualizacion;
 
     private Boolean solucion;
     private Boolean borrado;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="topico_id")

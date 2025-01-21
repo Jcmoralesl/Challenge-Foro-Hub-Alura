@@ -3,6 +3,7 @@ package com.challengeforohub.Foro.Hub.domain.topico;
 import com.challengeforohub.Foro.Hub.domain.curso.Curso;
 import com.challengeforohub.Foro.Hub.domain.topico.dto.ActualizarTopicoDTO;
 import com.challengeforohub.Foro.Hub.domain.topico.dto.CrearTopicoDTO;
+import com.challengeforohub.Foro.Hub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

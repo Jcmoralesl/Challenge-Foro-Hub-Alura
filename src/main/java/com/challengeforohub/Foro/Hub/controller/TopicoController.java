@@ -11,17 +11,25 @@ import com.challengeforohub.Foro.Hub.domain.topico.dto.ActualizarTopicoDTO;
 import com.challengeforohub.Foro.Hub.domain.topico.dto.CrearTopicoDTO;
 import com.challengeforohub.Foro.Hub.domain.topico.dto.DetallesTopicoDTO;
 import com.challengeforohub.Foro.Hub.domain.topico.repository.TopicoRepository;
+import com.challengeforohub.Foro.Hub.domain.topico.validations.create.ValidarTopicoCreado;
+import com.challengeforohub.Foro.Hub.domain.topico.validations.update.ValidarTopicoActualizado;
+import com.challengeforohub.Foro.Hub.domain.usuario.Usuario;
+import com.challengeforohub.Foro.Hub.domain.usuario.repository.UsuarioRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/topicos")

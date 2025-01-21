@@ -1,15 +1,16 @@
 package com.challengeforohub.Foro.Hub.controller;
-
 import com.challengeforohub.Foro.Hub.domain.usuario.Usuario;
 import com.challengeforohub.Foro.Hub.domain.usuario.dto.AutenticacionUsuarioDTO;
+import com.challengeforohub.Foro.Hub.infra.security.dto.JWTtokenDTO;
+import com.challengeforohub.Foro.Hub.infra.service.TokenService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

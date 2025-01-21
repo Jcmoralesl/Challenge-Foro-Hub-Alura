@@ -1,11 +1,11 @@
 package com.challengeforohub.Foro.Hub.controller;
-
-
 import com.challengeforohub.Foro.Hub.domain.respuesta.Respuesta;
 import com.challengeforohub.Foro.Hub.domain.respuesta.dto.ActualizarRespuestaDTO;
 import com.challengeforohub.Foro.Hub.domain.respuesta.dto.CrearRespuestaDTO;
 import com.challengeforohub.Foro.Hub.domain.respuesta.dto.DetalleRespuestaDTO;
 import com.challengeforohub.Foro.Hub.domain.respuesta.repository.RespuestaRepository;
+import com.challengeforohub.Foro.Hub.domain.respuesta.validations.create.ValidarRespuestaCreada;
+import com.challengeforohub.Foro.Hub.domain.respuesta.validations.update.ValidarRespuestaActualizada;
 import com.challengeforohub.Foro.Hub.domain.topico.Estado;
 import com.challengeforohub.Foro.Hub.domain.topico.Topico;
 import com.challengeforohub.Foro.Hub.domain.topico.repository.TopicoRepository;
@@ -14,7 +14,6 @@ import com.challengeforohub.Foro.Hub.domain.usuario.repository.UsuarioRepository
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,13 +21,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/respuestas")
 @SecurityRequirement(name = "bearer-key")
-@Tag(name = "Respuesta", description = "Solo uno puede ser la solucion al tema")
+@Tag(name = "Respuesta", description = "Sólo uno puede ser la solución a el tema.")
+
 public class RespuestaController {
 
     @Autowired
@@ -46,9 +49,10 @@ public class RespuestaController {
     @Autowired
     List<ValidarRespuestaActualizada> actualizarValidadores;
 
+
     @PostMapping
     @Transactional
-    @Operation (summary = "Registra una nueva respuesta en la base de datos, vinculada a un usuario y tema existente.")
+    @Operation(summary = "Registra una nueva respuesta en la base de datos, vinculada a un usuario y tema existente.")
     public ResponseEntity<DetalleRespuestaDTO> crearRespuesta(@RequestBody @Valid CrearRespuestaDTO crearRespuestaDTO,
                                                               UriComponentsBuilder uriBuilder){
         crearValidadores.forEach(v -> v.validate(crearRespuestaDTO));
@@ -69,7 +73,7 @@ public class RespuestaController {
     public ResponseEntity<Page<DetalleRespuestaDTO>>
     leerRespuestaDeTopico(@PageableDefault(size = 5, sort = {"ultimaActualizacion"},
             direction = Sort.Direction.ASC) Pageable pageable, @PathVariable Long topicoId){
-        var pagina = respuestaRepository.findAllByTopicoId(topicoId, pageable).map(DetalleRespuestaDTO::new);
+        var pagina = respuestaRepository.findByAllByTopicoId(topicoId, pageable).map(DetalleRespuestaDTO::new);
         return ResponseEntity.ok(pagina);
     }
 
@@ -138,6 +142,5 @@ public class RespuestaController {
         respuesta.eliminarRespuesta();
         return ResponseEntity.noContent().build();
     }
-
 
 }

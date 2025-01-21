@@ -5,6 +5,8 @@ import com.challengeforohub.Foro.Hub.domain.usuario.dto.ActualizarUsuarioDTO;
 import com.challengeforohub.Foro.Hub.domain.usuario.dto.CrearUsuarioDTO;
 import com.challengeforohub.Foro.Hub.domain.usuario.dto.DetallesUsuarioDTO;
 import com.challengeforohub.Foro.Hub.domain.usuario.repository.UsuarioRepository;
+import com.challengeforohub.Foro.Hub.domain.usuario.validations.create.ValidarCrearUsuario;
+import com.challengeforohub.Foro.Hub.domain.usuario.validations.update.ValidarActualizarUsuario;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,6 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
