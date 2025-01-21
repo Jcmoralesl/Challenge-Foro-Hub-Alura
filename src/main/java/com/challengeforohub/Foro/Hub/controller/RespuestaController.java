@@ -9,6 +9,8 @@ import com.challengeforohub.Foro.Hub.domain.respuesta.repository.RespuestaReposi
 import com.challengeforohub.Foro.Hub.domain.topico.Estado;
 import com.challengeforohub.Foro.Hub.domain.topico.Topico;
 import com.challengeforohub.Foro.Hub.domain.topico.repository.TopicoRepository;
+import com.challengeforohub.Foro.Hub.domain.usuario.Usuario;
+import com.challengeforohub.Foro.Hub.domain.usuario.repository.UsuarioRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
